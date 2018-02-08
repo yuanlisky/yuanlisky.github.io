@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="AC自动机">
+<meta name="description" content="AC自动机, Aho-corasick">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Python实现Aho-corasick自动机">
-<meta property="og:url" content="https://yuanlisky.coding.me/使用Python实现Aho-corasick自动机.html">
+<meta property="og:title" content="使用Python实现AC自动机">
+<meta property="og:url" content="https://yuanlisky.coding.me/使用Python实现AC自动机.html">
 <meta property="og:site_name" content="Yuanli&#39;s Blog">
-<meta property="og:description" content="AC自动机">
+<meta property="og:description" content="AC自动机, Aho-corasick">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-02-08T19:29:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Python实现Aho-corasick自动机">
-<meta name="twitter:description" content="AC自动机">
+<meta name="twitter:title" content="使用Python实现AC自动机">
+<meta name="twitter:description" content="AC自动机, Aho-corasick">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://yuanlisky.coding.me/使用Python实现Aho-corasick自动机.html"/>
+  <link rel="canonical" href="https://yuanlisky.coding.me/使用Python实现AC自动机.html"/>
 
 
 
 
 
-  <title>使用Python实现Aho-corasick自动机 | Yuanli's Blog</title>
+  <title>使用Python实现AC自动机 | Yuanli's Blog</title>
   
 
 
@@ -304,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://yuanlisky.coding.me/使用Python实现Aho-corasick自动机.html">
+    <link itemprop="mainEntityOfPage" href="https://yuanlisky.coding.me/使用Python实现AC自动机.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yuanli">
@@ -321,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用Python实现Aho-corasick自动机</h1>
+          <h1 class="post-title" itemprop="name headline">使用Python实现AC自动机</h1>
         
 
         <div class="post-meta">
@@ -374,8 +374,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/使用Python实现Aho-corasick自动机.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/使用Python实现Aho-corasick自动机.html" itemprop="commentsCount"></span>
+                <a href="/使用Python实现AC自动机.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/使用Python实现AC自动机.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -390,7 +390,7 @@
 
           
               <div class="post-description">
-                  AC自动机
+                  AC自动机, Aho-corasick
               </div>
           
 
@@ -409,20 +409,6 @@
       
         <p>AC算法，也叫AC自动机，主要用于多字符串的匹配，其主要思想是通过模式字符串构建Trie树，再在Trie上构建fail指针，这样的Trie树就是一个AC自动机。可以通过AC自动机搜索待处理的文本与模式字符串进行匹配。<br>关于AC算法的原理就不讲了，网上一搜多的是，这里直接上Python代码吧，注释都有，这是基本python3的。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">AC自动机</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.next = &#123;&#125;</span><br><span class="line">        self.fail = <span class="keyword">None</span>  <span class="comment"># 失败指针</span></span><br><span class="line">        self.isWord = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ahocorasick</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.__root = Node()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addWord</span><span class="params">(self, word)</span>:</span></span><br><span class="line">        tmp = self.__root</span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> word:</span><br><span class="line">            tmp = tmp.next.setdefault(char, Node())</span><br><span class="line">        tmp.isWord = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">make</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        构建失败路径</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        tmpQueue = list()</span><br><span class="line">        tmpQueue.append(self.__root)</span><br><span class="line">        <span class="keyword">while</span> len(tmpQueue) &gt; <span class="number">0</span>:</span><br><span class="line">            temp = tmpQueue.pop()</span><br><span class="line">            p = <span class="keyword">None</span></span><br><span class="line">            <span class="keyword">for</span> k, v <span class="keyword">in</span> temp.next.items():</span><br><span class="line">                <span class="keyword">if</span> temp == self.__root:</span><br><span class="line">                    temp.next[k].fail = self.__root</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    p = temp.fail</span><br><span class="line">                    <span class="keyword">while</span> p <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">                        <span class="keyword">if</span> k <span class="keyword">in</span> p.next:</span><br><span class="line">                            temp.next[k].fail = p.next[k]</span><br><span class="line">                            <span class="keyword">break</span></span><br><span class="line">                        p = p.fail</span><br><span class="line">                    <span class="keyword">if</span> p <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">                        temp.next[k].fail = self.__root</span><br><span class="line">                tmpQueue.append(temp.next[k])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(self, content)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        返回列表，每个元素为匹配的模式串在句中的起止位置</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        result = []</span><br><span class="line">        startWordIndex = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> currentPosition <span class="keyword">in</span> range(len(content)):</span><br><span class="line">            word = content[currentPosition]</span><br><span class="line">            endWordIndex = currentPosition</span><br><span class="line">            p = self.__root</span><br><span class="line">            <span class="keyword">while</span> word <span class="keyword">in</span> p.next:</span><br><span class="line">                <span class="keyword">if</span> p == self.__root:</span><br><span class="line">                    startWordIndex = currentPosition</span><br><span class="line">                p = p.next[word]</span><br><span class="line">                <span class="keyword">if</span> p.isWord:</span><br><span class="line">                    result.append((startWordIndex, endWordIndex))</span><br><span class="line">                <span class="keyword">if</span> p.next <span class="keyword">and</span> endWordIndex+<span class="number">1</span> &lt; len(content):</span><br><span class="line">                    endWordIndex += <span class="number">1</span></span><br><span class="line">                    word = content[endWordIndex]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="keyword">while</span> (word <span class="keyword">not</span> <span class="keyword">in</span> p.next) <span class="keyword">and</span> (p != self.__root):</span><br><span class="line">                    p = p.fail</span><br><span class="line">                    startWordIndex += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> p == self.__root:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">replace</span><span class="params">(self, content)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        匹配到的字符串以'*'号表示</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        replacepos = self.search(content)</span><br><span class="line">        result = content</span><br><span class="line">        <span class="keyword">for</span> posindex <span class="keyword">in</span> replacepos:</span><br><span class="line">            result = result[<span class="number">0</span>:posindex[<span class="number">0</span>]] + (posindex[<span class="number">1</span>] - posindex[<span class="number">0</span>] + <span class="number">1</span>) * <span class="string">'*'</span> + content[posindex[<span class="number">1</span>] + <span class="number">1</span>:]</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">import</span> time</span><br><span class="line">    ah = Ahocorasick()</span><br><span class="line">    x = [<span class="string">"CD"</span>, <span class="string">"CDH"</span>, <span class="string">"CCDH"</span>, <span class="string">"HY"</span>, <span class="string">'DH'</span>, <span class="string">'CCD'</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> x:</span><br><span class="line">        ah.addWord(i)</span><br><span class="line">    ah.make()</span><br><span class="line">    text = [<span class="string">'G'</span>, <span class="string">'G'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'H'</span>, <span class="string">'C'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'H'</span>, <span class="string">'Y'</span>]</span><br><span class="line">    <span class="comment"># 可以是字符串，也可以是列表</span></span><br><span class="line">    start = time.clock()</span><br><span class="line">    res = ah.search(text)</span><br><span class="line">    end = time.clock()</span><br><span class="line">    print(res)</span><br><span class="line">    print(end - start)</span><br></pre></td></tr></table></figure>
-<p><div id="container"></div></p>
-<p><link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css"></p>
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  owner: 'yuanlisky',
-  repo: 'yuanlisky.github.io',
-  oauth: {
-    client_id: '8856285ba9c5d477a145',
-    client_secret: '105e40416ecae5ff9f5da636301fc2db953be002',
-  },
-})
-gitment.render('container')
-</script>
 
       
     </div>
@@ -458,12 +444,12 @@ gitment.render('container')
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/使用Python实现Aho-corasick自动机.html">使用Python实现Aho-corasick自动机</a></p>
+  <p><span>本文标题:</span><a href="/使用Python实现AC自动机.html">使用Python实现AC自动机</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Yuanli 的个人博客">Yuanli</a></p>
   <p><span>发布时间:</span>2018年02月08日 - 19:29</p>
   <p><span>最后更新:</span>2018年02月09日 - 03:29</p>
-  <p><span>原始链接:</span><a href="/使用Python实现Aho-corasick自动机.html" title="使用Python实现Aho-corasick自动机">https://yuanlisky.coding.me/使用Python实现Aho-corasick自动机.html</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://yuanlisky.coding.me/使用Python实现Aho-corasick自动机.html"  aria-label="复制成功！"></i></span>
+  <p><span>原始链接:</span><a href="/使用Python实现AC自动机.html" title="使用Python实现AC自动机">https://yuanlisky.coding.me/使用Python实现AC自动机.html</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://yuanlisky.coding.me/使用Python实现AC自动机.html"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
